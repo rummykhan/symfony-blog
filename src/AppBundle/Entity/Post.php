@@ -13,19 +13,20 @@ class Post
     /**
      * @var int
      * @ORM\Column(type="integer")
+     * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
 
     /**
      * @var string
-     * @ORM\Column(type="string", length="255")
+     * @ORM\Column(type="string", length=255)
      */
     private $title;
 
     /**
      * @var string
-     * @ORM\Column(type="string", length="500")
+     * @ORM\Column(type="string", length=500)
      */
     private $slug;
 
