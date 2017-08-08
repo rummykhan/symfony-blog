@@ -3,10 +3,12 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints\DateTime;
 
 /**
  * @ORM\Entity()
  * @ORM\Table(name="posts")
+ * @ORM\HasLifecycleCallbacks()
  */
 class Post
 {
@@ -38,6 +40,19 @@ class Post
 
 
     /**
+     * @var string
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $createdAt;
+
+    /**
+     * @var string
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $updatedAt;
+
+
+    /**
      * Get id
      *
      * @return int
@@ -61,6 +76,7 @@ class Post
     public function setTitle($title)
     {
         $this->title = $title;
+        $this->setSlug(string($title)->slugify());
     }
 
     /**
@@ -74,7 +90,7 @@ class Post
     /**
      * @param string $slug
      */
-    public function setSlug($slug)
+    private function setSlug($slug)
     {
         $this->slug = $slug;
     }
@@ -93,6 +109,39 @@ class Post
     public function setBody($body)
     {
         $this->body = $body;
+    }
+
+
+    /**
+     * @ORM\PrePersist()
+     */
+    public function onPersist()
+    {
+        $this->createdAt = new \DateTime();
+    }
+
+    /**
+     * @ORM\PostUpdate()
+     */
+    public function onPostUpdate()
+    {
+        $this->updatedAt = new \DateTime();
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updatedAt ? $this->updatedAt : null;
     }
 }
 

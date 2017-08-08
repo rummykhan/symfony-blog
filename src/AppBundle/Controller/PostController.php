@@ -14,8 +14,6 @@ class PostController extends Controller
      */
     public function createAction(Request $request)
     {
-        $em = $this->getDoctrine()->getManager();
-
         return $this->render('frontend/default/post/create.html.twig');
     }
 
@@ -26,7 +24,11 @@ class PostController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        return $this->render('frontend/default/post/post.html.twig');
+        $post = $em->getRepository('AppBundle:Post')->findOneBy(['slug' => $slug]);
+
+        return $this->render('frontend/default/post/post.html.twig', [
+            'post' => $post
+        ]);
     }
 
     /**
@@ -35,7 +37,10 @@ class PostController extends Controller
     public function indexAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
+        $posts = $em->getRepository('AppBundle:Post')->findAll();
 
-        return $this->render('frontend/default/post/index.html.twig');
+        return $this->render('frontend/default/post/index.html.twig', [
+            'posts' => $posts
+        ]);
     }
 }
