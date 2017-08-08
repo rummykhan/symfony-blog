@@ -1,0 +1,4 @@
+AppBundle\Entity\Post:
+  post_{1..100}:
+    title: <text(50)>
+    body: <text(800)>

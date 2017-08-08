@@ -26,6 +26,10 @@ class PostController extends Controller
 
         $post = $em->getRepository('AppBundle:Post')->findOneBy(['slug' => $slug]);
 
+        if(!$post){
+            throw $this->createNotFoundException("Post not found!");
+        }
+
         return $this->render('frontend/default/post/post.html.twig', [
             'post' => $post
         ]);
