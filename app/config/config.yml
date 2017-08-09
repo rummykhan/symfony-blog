@@ -71,3 +71,10 @@ swiftmailer:
 doctrine_migrations:
   dir_name: '%kernel.root_dir%/../src/AppBundle/DoctrineMigrations'
   namespace: 'AppBundle\DoctrineMigrations'
+
+doctrine_cache:
+  providers:
+    markdown_cache:
+      type: file_system
+      file_system:
+        directory: 'D:\doctrine_cache\'

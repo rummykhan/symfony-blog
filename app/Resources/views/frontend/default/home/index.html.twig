@@ -1,6 +1,7 @@
 {% extends 'frontend/default/base.html.twig' %}
 
 {% block body %}
-    <h1>rummykhan was here!!</h1>
-    {{ dump() }}
+    <div class="alert alert-success text-center">
+        <p>{{ greeting|raw }}</p>
+    </div>
 {% endblock %}
