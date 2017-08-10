@@ -41,7 +41,8 @@ class PostController extends Controller
     public function indexAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
-        $posts = $em->getRepository('AppBundle:Post')->findAll();
+        $posts = $em->getRepository('AppBundle:Post')
+            ->findAllPublished();
 
         return $this->render('frontend/default/post/index.html.twig', [
             'posts' => $posts

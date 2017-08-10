@@ -2,7 +2,8 @@ app:
     resource: '@AppBundle/Controller/'
     type: annotation
 
-dummy:
-  path: /dummy
-  defaults:
-    _controller: AppBundle:Main:dummy
+#dummy:
+#  path: /dummy/{name}
+#  defaults:
+#    _controller: AppBundle:Main:dummy
+#    name: rummykhan

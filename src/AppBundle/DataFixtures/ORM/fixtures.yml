@@ -1,4 +1,14 @@
+AppBundle\Entity\User:
+  user_{1..10}:
+    name: <name()>
+    email: <email()>
+    password: <password()>
+    createdAt: <dateTime()>
+
 AppBundle\Entity\Post:
   post_{1..100}:
     title: <text(50)>
-    body: <text(800)>
+    excerpt: <text(255)>
+    body: <text(5000)>
+    isPublished: <boolean(75)>
+    user: '@user_*'

@@ -10,9 +10,9 @@
                         <a href="{{ path('post', {'slug': post.slug}) }}">{{ post.title }}</a>
                     </div>
                     <div class="panel-body">
-                        {{ post.body }}
+                        {{ post.excerpt }}
                         <hr>
-                        {{ post.createdAt | date('Y-m-d H:i:s')  }}
+                        by <strong>{{ post.user.name }}</strong> at {{ post.createdAt | date('Y-m-d H:i:s') }}
                     </div>
                 </div>
             {% endfor %}

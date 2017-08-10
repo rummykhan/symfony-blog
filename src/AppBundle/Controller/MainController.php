@@ -14,8 +14,8 @@ use Symfony\Component\HttpFoundation\Response;
 
 class MainController extends Controller
 {
-    public function dummyAction()
+    public function dummyAction($name)
     {
-        return new Response("Main Controller");
+        return new Response("Main Controller - {$name}");
     }
 }

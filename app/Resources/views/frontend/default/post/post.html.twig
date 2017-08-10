@@ -11,9 +11,9 @@
                     {{ post.body }}
                 </div>
             </div>
-            <strong>
-                {{ post.createdAt|date('Y-m-d H:i:s') }}
-            </strong>
+            <div class="text-right">
+                by <strong>{{ post.user.name }}</strong> at {{ post.createdAt | date('Y-m-d H:i:s') }}
+            </div>
         </div>
     </div>
 {% endblock %}
