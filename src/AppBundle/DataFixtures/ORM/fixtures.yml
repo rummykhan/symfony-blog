@@ -3,7 +3,8 @@ AppBundle\Entity\User:
     name: <name()>
     email: <email()>
     password: <password()>
-    createdAt: <dateTime()>
+    createdAt: <dateTimeBetween("-6 months", "now")>
+    salt: <salt()>
 
 AppBundle\Entity\Post:
   post_{1..100}:
@@ -12,3 +13,4 @@ AppBundle\Entity\Post:
     body: <text(5000)>
     isPublished: <boolean(75)>
     user: '@user_*'
+    viewsCount: <numberBetween(200, 700)>

@@ -37,9 +37,39 @@ class Post
      */
     private $excerpt;
 
+    /**
+     * @var string
+     * @ORM\Column(type="text")
+     */
+    private $body;
 
     /**
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User")
+     * @ORM\Column(type="integer")
+     */
+    private $viewsCount = 0;
+
+
+    /**
+     * @var string
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $createdAt;
+
+    /**
+     * @var string
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $updatedAt;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $isPublished;
+
+
+    /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User", inversedBy="posts")
+     * @ORM\JoinColumn(nullable=false)
      */
     private $user;
 
@@ -74,30 +104,6 @@ class Post
     {
         $this->excerpt = $excerpt;
     }
-
-    /**
-     * @var string
-     * @ORM\Column(type="text")
-     */
-    private $body;
-
-
-    /**
-     * @var string
-     * @ORM\Column(type="datetime", nullable=true)
-     */
-    private $createdAt;
-
-    /**
-     * @var string
-     * @ORM\Column(type="datetime", nullable=true)
-     */
-    private $updatedAt;
-
-    /**
-     * @ORM\Column(type="boolean")
-     */
-    private $isPublished;
 
 
     /**
@@ -198,6 +204,22 @@ class Post
     public function getisPublished()
     {
         return $this->isPublished;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getViewsCount()
+    {
+        return $this->viewsCount;
+    }
+
+    /**
+     * @param mixed $viewsCount
+     */
+    public function setViewsCount($viewsCount)
+    {
+        $this->viewsCount = $viewsCount;
     }
 }
 
