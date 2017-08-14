@@ -53,7 +53,8 @@ security:
 
     access_control:
         # Un-Comment Below line to use with Http Authentication
-        - { path: ^/posts, roles: ROLE_USER }
+        - { path: ^/user/, roles: ROLE_USER }
+        - { path: ^/admin/, roles: ROLE_ADMIN }
 
     encoders:
       AppBundle\Entity\User:
