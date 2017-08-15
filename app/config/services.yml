@@ -33,3 +33,7 @@ services:
     # AppBundle\Service\ExampleService:
     #     arguments:
     #         $someArgument: 'some_value'
+
+    app.markdown:
+      class: AppBundle\Service\MarkDownService
+      arguments: ['@markdown.parser']

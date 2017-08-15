@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\AppBundle;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -14,29 +15,21 @@ class DefaultController extends Controller
      */
     public function indexAction(Request $request)
     {
-        $greeting = "*Hey there! Welcome to my blog.*";
+        $em = $this->getDoctrine()->getManager();
 
-        $cache = $this->get('doctrine_cache.providers.markdown_cache');
+        $query = $em->getRepository('AppBundle:Post')
+            ->getPublishedQuery();
 
-        $key = md5($greeting);
+        $paginator = $this->get('knp_paginator')->paginate(
+            $query,
+            $request->get('page', 1),
+            10
+        );
 
-        if ($cache->contains($key)) {
-            $greeting = $cache->fetch($key);
-        } else {
-            $cache->save($key, $this->get('markdown.parser')->transform($greeting));
-        }
+        //dump($paginator);exit;
 
-        // replace this example code with whatever you need
-        return $this->render('frontend/default/home/index.html.twig', [
-            'greeting' => $greeting
+        return $this->render('frontend/default/post/index.html.twig', [
+            'paginator' => $paginator
         ]);
-    }
-
-    /**
-     * @Route("/tmp/{name}", defaults={"name"= null})
-     */
-    public function testAction($name = null)
-    {
-        return new Response($name);
     }
 }

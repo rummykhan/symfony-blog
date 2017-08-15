@@ -138,7 +138,7 @@ class Post
      */
     public function getSlug()
     {
-        return $this->slug;
+        return (string)$this->slug;
     }
 
     /**
@@ -220,6 +220,16 @@ class Post
     public function setViewsCount($viewsCount)
     {
         $this->viewsCount = $viewsCount;
+    }
+
+    /**
+     * @param mixed $isPublished
+     * @return Post
+     */
+    public function setIsPublished($isPublished)
+    {
+        $this->isPublished = $isPublished;
+        return $this;
     }
 }
 

@@ -289,5 +289,15 @@ class User implements UserInterface, Serializable
         $role->addUsers($this);
         $this->userRoles[] = $role;
     }
+
+    public function addPosts(Post $post)
+    {
+        if ($this->posts->contains($post)) {
+            return;
+        }
+
+        $post->setUser($this);
+        $this->posts[] = $post;
+    }
 }
 

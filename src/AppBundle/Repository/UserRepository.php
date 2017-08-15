@@ -1,6 +1,7 @@
 <?php
 
 namespace AppBundle\Repository;
+
 use Symfony\Bridge\Doctrine\Security\User\UserLoaderInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
@@ -28,5 +29,15 @@ class UserRepository extends \Doctrine\ORM\EntityRepository implements UserLoade
             ->setParameter('email', $username)
             ->getQuery()
             ->getOneOrNullResult();
+    }
+
+    public function loadUserWithOnlyUserRole()
+    {
+        return $this->createQueryBuilder('u')
+            ->innerJoin('u.userRoles', 'ur')
+            ->andWhere('ur.name = :name')
+            ->setParameter('name', 'USER')
+            ->getQuery()
+            ->execute();
     }
 }

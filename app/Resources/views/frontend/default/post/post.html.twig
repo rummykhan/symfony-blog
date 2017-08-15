@@ -12,7 +12,9 @@
                 </div>
             </div>
             <div class="text-right">
-                by <strong>{{ post.user.name }}</strong> at {{ post.createdAt | date('Y-m-d H:i:s') }}
+                by <strong>
+                    <a href="{{ url('user_posts', {"email": post.user.email}) }}">{{ post.user.name }}</a>
+                </strong> at {{ post.createdAt | date('Y-m-d H:i:s') }}
             </div>
         </div>
     </div>

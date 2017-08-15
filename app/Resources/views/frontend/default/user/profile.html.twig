@@ -10,33 +10,12 @@
                 </div>
                 <div class="panel-body">
 
-                    {{ form(new FormView(), {'method': 'GET'}) }}
+                    {% include 'messages/success.html.twig' %}
 
-                    <div class="form-group">
-                        <label for="">Name</label>
-                        <input type="text" name="name" class="form-control" value="{{ app.user.name }}">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="">Email</label>
-                        <input type="email" class="form-control" value="{{ app.user.email }}" disabled="disabled">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="">Password</label>
-                        <input type="password" name="password" class="form-control">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="">Confirm Password</label>
-                        <input type="password" name="confirm_password" class="form-control">
-                    </div>
-
-                    <div class="form-group">
-                        <input type="button" class="btn btn-primary btn-sm" value="Update Profile">
-                    </div>
-
-                    {{ form_end(new FormView()) }}
+                    {{ form_start(profileForm, {"method":"POST"}) }}
+                    {{ form_widget(profileForm) }}
+                    <button class="btn btn-primary">Save</button>
+                    {{ form_end(profileForm) }}
 
                 </div>
             </div>

@@ -15,7 +15,11 @@ framework:
     router:
         resource: '%kernel.project_dir%/app/config/routing.yml'
         strict_requirements: ~
-    form: ~
+    form:
+      enabled: true
+      csrf_protection:
+        enabled: true
+        field_name: _token
     csrf_protection:
       enabled: true
     validation: { enable_annotations: true }
@@ -38,6 +42,8 @@ framework:
 twig:
     debug: '%kernel.debug%'
     strict_variables: '%kernel.debug%'
+    form_themes:
+      - bootstrap_3_layout.html.twig
 
 # Doctrine Configuration
 doctrine:
@@ -79,3 +85,7 @@ doctrine_cache:
       type: file_system
       file_system:
         directory: 'D:\doctrine_cache\'
+
+knp_paginator:
+    template:
+        pagination:           'common/pagination.html.twig'
